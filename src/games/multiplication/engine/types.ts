@@ -31,7 +31,7 @@ export interface LevelDef {
   /** Tables newly taught in this level. Ignored for the final level. */
   tables: number[];
   /** Visual theme of the stop on the map / in the scene. */
-  scene: 'home' | 'mill' | 'bridge' | 'orchard' | 'forest' | 'waterfall' | 'pass' | 'school';
+  scene: 'home' | 'farm' | 'mill' | 'bridge' | 'orchard' | 'forest' | 'waterfall' | 'pass' | 'school';
   isFinal?: boolean;
 }
 

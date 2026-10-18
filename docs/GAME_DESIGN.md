@@ -53,14 +53,17 @@ Hiç sorulmamış çarpımlar orta ağırlık alır (`weight.unseenWeight = 2.5`
 
 | # | Durak | Yeni tablolar | Yeni çarpım |
 |---|---|---|---|
-| 1 | Ev Köyü | 1'ler, 10'lar | 36 |
-| 2 | Değirmen Köyü | 2'ler | 15 |
-| 3 | Köprü Başı | 5'ler | 13 |
-| 4 | Elma Bahçesi | 3'ler | 11 |
-| 5 | Orman Kenarı | 4'ler | 9 |
-| 6 | Şelale Köyü | 9'lar | 7 |
-| 7 | Zorlu Geçit | 6'lar, 7'ler, 8'ler | 9 |
-| 8 | Okul Kapısı — FİNAL | Tümü | 100 |
+| 1 | Ev Köyü | 1'ler | 19 |
+| 2 | Çiftlik | 10'lar | 17 |
+| 3 | Değirmen Köyü | 2'ler | 15 |
+| 4 | Köprü Başı | 5'ler | 13 |
+| 5 | Elma Bahçesi | 3'ler | 11 |
+| 6 | Orman Kenarı | 4'ler | 9 |
+| 7 | Şelale Köyü | 9'lar | 7 |
+| 8 | Zorlu Geçit | 6'lar, 7'ler, 8'ler | 9 |
+| 9 | Okul Kapısı — FİNAL | Tümü | 100 |
+
+Spesifikasyondaki ilk bölüm (1'ler ve 10'lar, 36 çarpım) çok uzun sürdüğü için ikiye bölündü.
 
 - **Yeni çarpımlar** bölüm listesinden otomatik hesaplanır: bölümün tablolarından birini içeren ve önceki
   bölümlerde olmayan tüm çarpımlar (her iki sırada). Elle liste yazılmaz.
@@ -171,7 +174,7 @@ ekran sallanır, "bonk". Bölüm sonu: çocuk köye girer, kuşlar, konfeti, yı
 
 1. `id` kalıcıdır (kayıtta saklanır) — mevcut id'leri değiştirmeyin.
 2. `nameKey` için `src/i18n/tr.json` → `levels.meadow` metnini ekleyin.
-3. `scene` haritadaki/sahnedeki çizimi seçer (`home`, `mill`, `bridge`, `orchard`, `forest`, `waterfall`, `pass`, `school`).
+3. `scene` haritadaki/sahnedeki çizimi seçer (`home`, `farm`, `mill`, `bridge`, `orchard`, `forest`, `waterfall`, `pass`, `school`).
 4. Yeni çarpımlar otomatik hesaplanır; sırayı değiştirmek yeterlidir. Final her zaman `isFinal: true` olan son giriştir.
 5. Eski kayıtlar bozulmaz: bilinmeyen id'ler yok sayılır, yeni bölümler kilit durumuna göre eklenir
-   (bkz. [DATA_MODEL.md](DATA_MODEL.md)). 8'den fazla durakta harita konumları otomatik dağıtılır.
+   (bkz. [DATA_MODEL.md](DATA_MODEL.md)). 9'dan fazla durakta harita konumları otomatik dağıtılır.

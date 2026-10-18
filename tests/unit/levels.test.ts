@@ -22,7 +22,7 @@ describe('computeLevelFacts', () => {
   const normal = levels.filter((l) => !l.isFinal);
 
   it('matches the expected new-fact counts per level', () => {
-    expect(normal.map((l) => lf[l.id].newFacts.length)).toEqual([36, 15, 13, 11, 9, 7, 9]);
+    expect(normal.map((l) => lf[l.id].newFacts.length)).toEqual([19, 17, 15, 13, 11, 9, 7, 9]);
   });
 
   it('assigns every fact to exactly one normal level and covers all 100', () => {
@@ -50,12 +50,14 @@ describe('computeLevelFacts', () => {
   it('reports the level of a fact', () => {
     expect(levelOfFact(lf, levels, '7x8')).toBe('pass');
     expect(levelOfFact(lf, levels, '1x7')).toBe('home');
+    expect(levelOfFact(lf, levels, '10x7')).toBe('farm');
+    expect(levelOfFact(lf, levels, '1x10')).toBe('home');
   });
 
   it('follows a reordered level list automatically', () => {
     const reordered = [levels[1], levels[0], ...levels.slice(2)];
     const r = computeLevelFacts(reordered, config);
-    expect(r.mill.newFacts).toHaveLength(19); // 2..? 2s with 1..10 = 19 facts
-    expect(r.home.newFacts).toHaveLength(32);
+    expect(r.farm.newFacts).toHaveLength(19); // 10s first: 10 with 1..10 in both orders
+    expect(r.home.newFacts).toHaveLength(17); // 1s without 1x10 / 10x1
   });
 });

@@ -75,3 +75,7 @@ Spesifikasyonda belirsiz kalan veya bilinçli olarak yorumlanan noktalar. Tarih:
     ekranda butonlar artık "takılı hover" rengiyle kalmaz. 375×812'de tüm ekranlar öncesi/sonrası ekran
     görüntüsüyle karşılaştırıldı; yerleşim birebir aynı, renkler yalnızca v4'ün oklch paletinden gelen
     gözle görülmeyen farklar taşıyor.
+28. **İlk bölüm ikiye bölündü.** "1'ler ve 10'lar" (36 yeni çarpım, seviye 2 hedefiyle ~72+ soru) çocuklar için bir
+    türlü bitmiyordu. Artık 1. bölüm "Ev Köyü" (1'ler, 19 çarpım) ve 2. bölüm yeni "Çiftlik" durağı (10'lar, 17
+    çarpım). `home` id'si korundu; eski kayıtlarda "Ev Köyü" tamamlanmışsa "Çiftlik" açık olarak eklenir ve 10'lar
+    zaten öğrenildiği için ilk sorudan sonra geçilir. Harita 9 durağa göre uzatıldı (400×2200).

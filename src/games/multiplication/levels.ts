@@ -5,7 +5,8 @@ import type { LevelDef } from './engine/types';
  * (see engine/levels.ts) — reorder or add entries freely. Keep ids stable: they are saved.
  */
 export const levels: LevelDef[] = [
-  { id: 'home', nameKey: 'home', tables: [1, 10], scene: 'home' },
+  { id: 'home', nameKey: 'home', tables: [1], scene: 'home' },
+  { id: 'farm', nameKey: 'farm', tables: [10], scene: 'farm' },
   { id: 'mill', nameKey: 'mill', tables: [2], scene: 'mill' },
   { id: 'bridge', nameKey: 'bridge', tables: [5], scene: 'bridge' },
   { id: 'orchard', nameKey: 'orchard', tables: [3], scene: 'orchard' },

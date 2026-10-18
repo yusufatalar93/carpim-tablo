@@ -10,17 +10,20 @@ import { Person } from './Person';
 import { Pine, SchoolBuilding, StopArt, Tree } from './StopArt';
 
 const W = 400;
-const H = 2000;
+const H = 2200;
+const FIRST_Y = 2060;
+const TOP_Y = 345;
 
-/** Stop positions on the 400×2000 map, bottom (start) to top (school). Extra levels are interpolated. */
+/** Stop positions on the 400×2200 map, bottom (start) to top (school). Extra levels are interpolated. */
 const ANCHORS: [number, number][] = [
-  [200, 1860],
-  [105, 1640],
-  [290, 1420],
-  [110, 1200],
-  [290, 980],
-  [110, 760],
-  [285, 550],
+  [200, 2060],
+  [105, 1845],
+  [290, 1630],
+  [110, 1415],
+  [290, 1200],
+  [110, 985],
+  [290, 770],
+  [115, 560],
   [200, 345],
 ];
 
@@ -33,7 +36,7 @@ function stopPositions(count: number): Pt[] {
     return [...base, { x: ANCHORS[ANCHORS.length - 1][0], y: ANCHORS[ANCHORS.length - 1][1] }];
   }
   return Array.from({ length: count }, (_, i) => {
-    const y = 1860 - (i * (1860 - 345)) / (count - 1);
+    const y = FIRST_Y - (i * (FIRST_Y - TOP_Y)) / (count - 1);
     const x = i === count - 1 ? 200 : i % 2 === 0 ? 290 : 110;
     return { x: i === 0 ? 200 : x, y };
   });
@@ -80,6 +83,8 @@ export function WorldMap({ levels, adventure, walk, onWalkDone, onSelect, reduce
     return d;
   }, [pts]);
 
+  const bridgeIndex = levels.findIndex((l) => l.scene === 'bridge');
+  const bridge = bridgeIndex >= 0 ? pts[bridgeIndex] : null;
   const idx = (id: string) => Math.max(0, levels.findIndex((l) => l.id === id));
   const scrollRef = useRef<HTMLDivElement>(null);
   const startIdx = walk ? idx(walk.from) : idx(adventure.currentLevelId);
@@ -215,9 +220,9 @@ export function WorldMap({ levels, adventure, walk, onWalkDone, onSelect, reduce
         <Tree x={372} y={300} s={0.9} />
 
         {/* river near the bridge stop */}
-        {levels.length >= 3 && (
+        {bridge && (
           <path
-            d={`M-10 ${pts[2].y + 10} C120 ${pts[2].y + 30} 200 ${pts[2].y - 90} 410 ${pts[2].y - 120}`}
+            d={`M-10 ${bridge.y + 10} C120 ${bridge.y + 30} 200 ${bridge.y - 90} 410 ${bridge.y - 120}`}
             stroke="#60a5fa"
             strokeWidth="34"
             fill="none"
@@ -225,12 +230,14 @@ export function WorldMap({ levels, adventure, walk, onWalkDone, onSelect, reduce
           />
         )}
         {/* scattered trees and flowers */}
-        {[
-          [30, 1760], [370, 1720], [350, 1560], [40, 1480], [360, 1290], [30, 1060], [370, 1120], [200, 1090],
-          [40, 880], [200, 850], [370, 820], [360, 650], [40, 610], [200, 680], [40, 420], [370, 440],
-        ].map(([x, y], i) => (i % 3 === 0 ? <Pine key={i} x={x} y={y} s={0.9} /> : <Tree key={i} x={x} y={y} s={0.8} />))}
-        {Array.from({ length: 40 }, (_, i) => (
-          <circle key={i} cx={(i * 97) % 390 + 5} cy={420 + ((i * 331) % 1560)} r="3" fill={['#f472b6', '#facc15', '#fff'][i % 3]} opacity="0.8" />
+        {/* trees along the edges, clear of the stops and their labels */}
+        {Array.from({ length: Math.floor((H - 520) / 110) }, (_, i) => {
+          const x = i % 2 === 0 ? 20 : 380;
+          const y = 460 + i * 110;
+          return i % 3 === 0 ? <Pine key={i} x={x} y={y} s={0.9} /> : <Tree key={i} x={x} y={y} s={0.8} />;
+        })}
+        {Array.from({ length: 44 }, (_, i) => (
+          <circle key={i} cx={(i * 97) % 390 + 5} cy={420 + ((i * 331) % (H - 460))} r="3" fill={['#f472b6', '#facc15', '#fff'][i % 3]} opacity="0.8" />
         ))}
 
         {/* path */}

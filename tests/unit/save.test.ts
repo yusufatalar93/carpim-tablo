@@ -62,7 +62,7 @@ describe('level list changes', () => {
   it('ignores unknown level ids and adds new levels in the right lock state', () => {
     let save = createSave('p1', levels, config);
     save.adventure = completeLevel(save.adventure, levels, 'home', 2, 0.8, 1).adventure;
-    save.adventure = completeLevel(save.adventure, levels, 'mill', 3, 0.9, 2).adventure;
+    save.adventure = completeLevel(save.adventure, levels, 'farm', 3, 0.9, 2).adventure;
     const raw = JSON.parse(JSON.stringify(save));
     raw.adventure.levels.removed = { levelId: 'removed', status: 'completed', bestStars: 3 };
 
@@ -71,9 +71,9 @@ describe('level list changes', () => {
     const loaded = loadSaveData(raw, 'p1', newList, config);
     expect(loaded.adventure.levels.removed).toBeUndefined();
     expect(loaded.adventure.levels.home.status).toBe('completed');
-    expect(loaded.adventure.levels.mill.bestStars).toBe(3);
+    expect(loaded.adventure.levels.farm.bestStars).toBe(3);
     expect(loaded.adventure.levels.meadow.status).toBe('unlocked');
-    expect(loaded.adventure.levels.bridge.status).toBe('locked');
+    expect(loaded.adventure.levels.mill.status).toBe('locked');
     expect(loaded.adventure.currentLevelId).toBe('meadow');
   });
 
@@ -84,9 +84,9 @@ describe('level list changes', () => {
     const r = reconcileAdventure(done, [extra, ...levels]);
     expect(r.levels.intro.status).toBe('unlocked');
     expect(r.levels.home.status).toBe('completed');
-    expect(r.levels.mill.status).toBe('unlocked');
-    expect(r.levels.bridge.status).toBe('locked');
-    expect(r.currentLevelId).toBe('mill'); // saved position is still valid
+    expect(r.levels.farm.status).toBe('unlocked');
+    expect(r.levels.mill.status).toBe('locked');
+    expect(r.currentLevelId).toBe('farm'); // saved position is still valid
   });
 
   it('removes a stale currentLevelId', () => {

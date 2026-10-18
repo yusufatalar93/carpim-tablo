@@ -6,7 +6,7 @@
 > Yol üzerindeki her köy bir bölüm. Okulun kapısında onu son bir sınav bekliyor: kapıyı tutan **canavar**.
 > Canavarı yenince okula giriyor; okul bahçesinde piknik yapan, top oynayan arkadaşları onu karşılıyor.
 
-- 🗺️ **Macera** — kolaydan zora 7 köy + final (Okul Kapısı canavar savaşı), harita üzerinde ilerleme
+- 🗺️ **Macera** — kolaydan zora 8 durak + final (Okul Kapısı canavar savaşı), harita üzerinde ilerleme
 - 🎯 **Antrenman** — zorlanılan çarpımlar ağırlıklı, ya da seçilen tablolar; baskısız
 - 📊 **Özet** — 10×10 ısı haritası, tablo başarıları, en zor 5 çarpım ve "Bunları çalış"
 - Backend yok, tüm veri cihazda; internet olmadan çalışır (PWA); mobil öncelikli, dokunmatik

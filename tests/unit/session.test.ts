@@ -88,13 +88,13 @@ describe('adventure progress', () => {
   it('does not unlock the next level until the current one is passed', () => {
     let adv = createAdventure(levels);
     expect(isPlayable(adv, 'home')).toBe(true);
-    expect(isPlayable(adv, 'mill')).toBe(false);
+    expect(isPlayable(adv, 'farm')).toBe(false);
     const r = completeLevel(adv, levels, 'home', 2, 0.8, 1);
     adv = r.adventure;
-    expect(r.unlockedLevelId).toBe('mill');
-    expect(isPlayable(adv, 'mill')).toBe(true);
-    expect(isPlayable(adv, 'bridge')).toBe(false);
-    expect(adv.currentLevelId).toBe('mill');
+    expect(r.unlockedLevelId).toBe('farm');
+    expect(isPlayable(adv, 'farm')).toBe(true);
+    expect(isPlayable(adv, 'mill')).toBe(false);
+    expect(adv.currentLevelId).toBe('farm');
   });
 
   it('cannot complete a locked level and keeps best stars on replay', () => {

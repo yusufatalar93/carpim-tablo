@@ -27,10 +27,10 @@ test('hub → adventure → play level 1 → level 2 unlocked → summary update
   await page.getByTestId('onboarding-skip').click();
 
   await page.getByTestId('game-multiplication').click();
-  await expect(page.getByTestId('menu-progress')).toHaveText('Bölüm 1 / 8');
+  await expect(page.getByTestId('menu-progress')).toHaveText('Bölüm 1 / 9');
   await page.getByTestId('menu-adventure').click();
 
-  await expect(page.getByTestId('stop-mill')).toHaveAttribute('data-status', 'locked');
+  await expect(page.getByTestId('stop-farm')).toHaveAttribute('data-status', 'locked');
   await page.getByTestId('stop-home').click();
   await page.getByTestId('play-level').click();
 
@@ -39,14 +39,14 @@ test('hub → adventure → play level 1 → level 2 unlocked → summary update
   await page.getByTestId('back-to-map').click();
 
   await expect(page.getByTestId('stop-home')).toHaveAttribute('data-status', 'completed');
-  await expect(page.getByTestId('stop-mill')).toHaveAttribute('data-status', 'unlocked', { timeout: 5000 });
+  await expect(page.getByTestId('stop-farm')).toHaveAttribute('data-status', 'unlocked', { timeout: 5000 });
 
   // Progress survives a reload (local storage).
   await page.reload();
-  await expect(page.getByTestId('stop-mill')).toHaveAttribute('data-status', 'unlocked');
+  await expect(page.getByTestId('stop-farm')).toHaveAttribute('data-status', 'unlocked');
 
   await page.goto('/?fast=1#/mult/summary');
-  await expect(page.getByTestId('summary-adventure')).toContainText('1 / 8');
+  await expect(page.getByTestId('summary-adventure')).toContainText('1 / 9');
   await expect(page.getByTestId('cell-1x7')).not.toHaveAttribute('data-health', 'unseen');
   await expect(page.getByTestId('cell-7x8')).toHaveAttribute('data-health', 'unseen');
 });

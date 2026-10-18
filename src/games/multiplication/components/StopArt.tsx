@@ -64,6 +64,20 @@ const ART: Record<LevelDef['scene'], () => JSX.Element> = {
       <path d="M22 0 h30 M22 -8 h30 M26 2 v-14 M36 2 v-14 M46 2 v-14" stroke="#b45309" strokeWidth="2.5" strokeLinecap="round" />
     </g>
   ),
+  farm: () => (
+    <g>
+      <path d="M-26 4 L-26 -26 L-4 -44 L18 -26 L18 4 Z" fill="#dc2626" stroke="#7f1d1d" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M-30 -24 L-4 -48 L22 -24" fill="none" stroke="#f8fafc" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="-14" y="-16" width="20" height="20" fill="#fef2f2" stroke="#7f1d1d" strokeWidth="2" />
+      <path d="M-14 -16 L6 4 M6 -16 L-14 4" stroke="#7f1d1d" strokeWidth="2" />
+      <circle cx="-4" cy="-30" r="4" fill="#fef3c7" stroke="#7f1d1d" strokeWidth="1.5" />
+      <g transform="translate(36 2)">
+        <ellipse cx="0" cy="-8" rx="13" ry="10" fill="#facc15" stroke="#a16207" strokeWidth="2" />
+        <path d="M-9 -12 h18 M-11 -6 h22" stroke="#a16207" strokeWidth="1.5" />
+      </g>
+      <path d="M-50 2 h18 M-50 -6 h18 M-46 4 v-14 M-36 4 v-14" stroke="#b45309" strokeWidth="2.5" strokeLinecap="round" />
+    </g>
+  ),
   mill: () => (
     <g>
       <path d="M-12 4 L-8 -40 L8 -40 L12 4 Z" fill="#fef3c7" stroke="#92400e" strokeWidth="2" />
