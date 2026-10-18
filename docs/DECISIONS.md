@@ -60,3 +60,8 @@ Spesifikasyonda belirsiz kalan veya bilinçli olarak yorumlanan noktalar. Tarih:
 25. **Isı haritası hücreleri** 360 px genişlikte ~28 px'tir (56 px hedefinin altında); 11×11 ızgarada başka
     türlü sığmaz. Hücreler yalnızca detay açar, oyun girdisi değildir.
 26. Durak isimleri öneriler korunarak kullanıldı; 1. durak "Ev Köyü".
+27. **Bağımlılık güvenliği (npm audit).** Vite 6.4.4, Vitest 4.1.12, vite-plugin-pwa 1.3.0, @vitejs/plugin-react
+    4.7.0, Playwright 1.64.1 ve PostCSS 8.5.30'a yükseltildi; kritik ve yüksek açıkların çoğu kapandı. Kalan 7 uyarı
+    yalnızca **Tailwind CSS 3** bağımlılık zincirinde (braces, micromatch, chokidar, fast-glob, postcss-nested,
+    postcss-selector-parser) ve sadece build sırasında yerel dosya taramasını etkiliyor; tarayıcıya giden koda
+    girmiyor. Tailwind 4'e geçiş yapılandırma ve sınıf değişiklikleri gerektiren ayrı bir iştir.
