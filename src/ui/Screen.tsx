@@ -23,7 +23,7 @@ export function Screen({ title, back, right, children, className = '', fixed }: 
               type="button"
               aria-label={t('common.back')}
               onClick={() => navigate(back)}
-              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-3xl font-black shadow-sm active:scale-95"
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-3xl font-black shadow-xs active:scale-95"
             >
               ‹
             </button>

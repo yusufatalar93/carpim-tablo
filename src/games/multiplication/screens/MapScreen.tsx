@@ -26,7 +26,7 @@ export function MapScreen() {
 
   return (
     <div className="relative mx-auto flex h-full w-full max-w-[560px] flex-col">
-      <div className="safe-pad pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center gap-2 !pb-0">
+      <div className="safe-pad pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center gap-2 pb-0!">
         <button
           type="button"
           onClick={() => navigate('/mult')}
@@ -35,7 +35,7 @@ export function MapScreen() {
         >
           ‹
         </button>
-        <h1 className="flex-1 truncate rounded-2xl bg-white/80 px-3 py-2 text-xl font-black backdrop-blur">{t('map.title')}</h1>
+        <h1 className="flex-1 truncate rounded-2xl bg-white/80 px-3 py-2 text-xl font-black backdrop-blur-sm">{t('map.title')}</h1>
         <div className="rounded-2xl bg-white/95 px-3 py-2 text-xl font-black shadow-md">⭐ {totalStars(save.adventure)}</div>
       </div>
       <WorldMap

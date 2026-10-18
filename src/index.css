@@ -1,6 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Scan only src/ for class names (index.html has none), like the old v3 `content` globs. */
+@import 'tailwindcss' source('.');
+
+@theme {
+  --font-display: 'Baloo 2', ui-rounded, system-ui, sans-serif;
+
+  --color-cream: #fef9ef;
+  --color-ink: #2b2d42;
+}
+
+/* Tailwind 3 compatibility: v4 defaults borders to currentcolor, placeholders to faded text and buttons to the default cursor. */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-400);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
 
 :root {
   --safe-top: env(safe-area-inset-top, 0px);

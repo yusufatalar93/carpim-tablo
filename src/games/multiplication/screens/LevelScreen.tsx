@@ -162,7 +162,7 @@ function LevelPlay({ levelId }: { levelId: string }) {
 
 export function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl bg-white p-2 shadow-sm">
+    <div className="rounded-2xl bg-white p-2 shadow-xs">
       <div className="text-xs font-bold text-slate-500">{label}</div>
       <div className="tabular text-xl font-black">{value}</div>
     </div>

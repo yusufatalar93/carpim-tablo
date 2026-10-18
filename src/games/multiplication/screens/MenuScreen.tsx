@@ -21,7 +21,7 @@ export function MenuScreen() {
   ];
   return (
     <Screen title={t('menu.title')} back="/">
-      <div className="flex items-center gap-3 rounded-3xl bg-white p-4 shadow-sm">
+      <div className="flex items-center gap-3 rounded-3xl bg-white p-4 shadow-xs">
         <Kid pose="idle" size={56} />
         <div className="flex-1">
           <p className="text-lg font-black" data-testid="menu-progress">

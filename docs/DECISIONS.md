@@ -61,7 +61,17 @@ Spesifikasyonda belirsiz kalan veya bilinçli olarak yorumlanan noktalar. Tarih:
     türlü sığmaz. Hücreler yalnızca detay açar, oyun girdisi değildir.
 26. Durak isimleri öneriler korunarak kullanıldı; 1. durak "Ev Köyü".
 27. **Bağımlılık güvenliği (npm audit).** Vite 6.4.4, Vitest 4.1.12, vite-plugin-pwa 1.3.0, @vitejs/plugin-react
-    4.7.0, Playwright 1.64.1 ve PostCSS 8.5.30'a yükseltildi; kritik ve yüksek açıkların çoğu kapandı. Kalan 7 uyarı
-    yalnızca **Tailwind CSS 3** bağımlılık zincirinde (braces, micromatch, chokidar, fast-glob, postcss-nested,
-    postcss-selector-parser) ve sadece build sırasında yerel dosya taramasını etkiliyor; tarayıcıya giden koda
-    girmiyor. Tailwind 4'e geçiş yapılandırma ve sınıf değişiklikleri gerektiren ayrı bir iştir.
+    4.7.0 ve Playwright 1.64.1'e yükseltildi. Kalan 7 uyarı (braces, micromatch, chokidar, fast-glob, postcss-nested,
+    postcss-selector-parser, tailwindcss) yalnızca **Tailwind CSS 3** zincirindeydi; **Tailwind CSS 4.3.3**'e
+    geçilerek kapatıldı, `npm audit` artık 0 açık gösteriyor. Geçiş resmi `@tailwindcss/upgrade` aracıyla yapıldı:
+    `tailwind.config.js`, `postcss.config.js`, `autoprefixer` ve doğrudan `postcss` bağımlılığı kaldırıldı; Tailwind
+    `@tailwindcss/vite` eklentisiyle çalışıyor. Tema eklemeleri (`cream`, `ink`, `font-display`) `src/index.css`
+    içindeki `@theme` bloğunda; tarama `source('.')` ile yalnızca `src/` klasörüyle sınırlı. Yeniden adlandırılan
+    sınıflar güncellendi (`shadow-sm`→`shadow-xs`, `shadow`→`shadow-sm`, `rounded`→`rounded-sm`,
+    `bg-gradient-to-*`→`bg-linear-to-*`, `outline-none`→`outline-hidden`, `!pb-0`→`pb-0!` vb.). Görünümü korumak
+    için `@layer base` içinde v3 varsayılanları geri getirildi (kenarlık rengi gray-200, placeholder gray-400,
+    butonlarda `cursor: pointer`). `.safe-pad`, `.shake`, `.reduce-motion` gibi özel kurallar katmansız kaldı; v3'teki
+    gibi yardımcı sınıfları ezer. Bilinçli fark: v4'te `hover:` yalnızca fare olan cihazlarda çalışır, dokunmatik
+    ekranda butonlar artık "takılı hover" rengiyle kalmaz. 375×812'de tüm ekranlar öncesi/sonrası ekran
+    görüntüsüyle karşılaştırıldı; yerleşim birebir aynı, renkler yalnızca v4'ün oklch paletinden gelen
+    gözle görülmeyen farklar taşıyor.

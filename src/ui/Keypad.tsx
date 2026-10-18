@@ -33,7 +33,7 @@ export function Keypad({ onDigit, onErase, onSubmit, disabled, canSubmit = true 
         type="button"
         disabled={disabled || !canSubmit}
         onClick={press(onSubmit)}
-        className={`${key} border-emerald-700 bg-emerald-500 !text-xl text-white`}
+        className={`${key} border-emerald-700 bg-emerald-500 text-xl! text-white`}
         data-testid="key-ok"
       >
         {t('game.submit')}

@@ -20,7 +20,7 @@ export function HubScreen() {
           type="button"
           onClick={() => navigate('/settings')}
           aria-label={t('hub.settings')}
-          className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-3xl shadow-sm active:scale-95"
+          className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-3xl shadow-xs active:scale-95"
         >
           ⚙️
         </button>
@@ -41,7 +41,7 @@ export function HubScreen() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
-              className={`relative flex min-h-[150px] flex-col items-start justify-end rounded-3xl bg-gradient-to-br p-4 text-left text-white shadow-lg ${g.color} ${active ? 'col-span-2 min-h-[170px] active:scale-[0.98]' : 'opacity-80'}`}
+              className={`relative flex min-h-[150px] flex-col items-start justify-end rounded-3xl bg-linear-to-br p-4 text-left text-white shadow-lg ${g.color} ${active ? 'col-span-2 min-h-[170px] active:scale-[0.98]' : 'opacity-80'}`}
               data-testid={`game-${g.id}`}
             >
               <span className="absolute right-4 top-3 text-5xl" aria-hidden="true">{g.emoji}</span>

@@ -35,7 +35,7 @@ export function OnboardingScreen() {
           maxLength={24}
           autoComplete="off"
           placeholder={t('onboarding.placeholder')}
-          className="min-h-[60px] rounded-2xl border-4 border-sky-200 bg-white px-4 text-center text-2xl font-bold outline-none focus:border-sky-400"
+          className="min-h-[60px] rounded-2xl border-4 border-sky-200 bg-white px-4 text-center text-2xl font-bold outline-hidden focus:border-sky-400"
           data-testid="name-input"
         />
         <Button type="submit" size="lg" data-testid="onboarding-start">

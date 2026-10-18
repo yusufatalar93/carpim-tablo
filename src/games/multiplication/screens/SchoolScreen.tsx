@@ -114,10 +114,10 @@ function Certificate({ name, date, stars }: { name: string; date: string; stars:
       initial={{ scale: 0.8, opacity: 0, rotate: -3 }}
       animate={{ scale: 1, opacity: 1, rotate: 0 }}
       transition={{ type: 'spring', stiffness: 180, damping: 14 }}
-      className="relative w-full max-w-md rounded-[28px] border-[10px] border-double border-amber-500 bg-gradient-to-b from-amber-50 to-yellow-100 p-6 text-center shadow-2xl"
+      className="relative w-full max-w-md rounded-[28px] border-10 border-double border-amber-500 bg-linear-to-b from-amber-50 to-yellow-100 p-6 text-center shadow-2xl"
       data-testid="certificate"
     >
-      <div className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-amber-400 text-2xl shadow">🏅</div>
+      <div className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-amber-400 text-2xl shadow-sm">🏅</div>
       <p className="mt-2 text-sm font-black uppercase tracking-widest text-amber-700">{t('school.school')}</p>
       <h1 className="mt-1 text-3xl font-black leading-tight text-violet-700">{t('school.certificateTitle')}</h1>
       <div className="my-3 flex justify-center">

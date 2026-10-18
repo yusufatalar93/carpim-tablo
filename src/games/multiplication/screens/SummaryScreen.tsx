@@ -33,13 +33,13 @@ export function SummaryScreen() {
           <Stat label={t('summary.avgTime')} value={sum.correct ? formatSeconds(sum.avgResponseMs) : '–'} />
         </section>
 
-        <section className="rounded-3xl bg-white p-3 shadow-sm">
+        <section className="rounded-3xl bg-white p-3 shadow-xs">
           <h2 className="mb-1 text-xl font-black">{t('summary.heatmap')}</h2>
           <p className="mb-2 text-sm font-bold text-slate-500">{t('summary.heatmapHint')}</p>
           <Heatmap facts={facts} config={config} onSelect={setSelected} />
         </section>
 
-        <section className="rounded-3xl bg-white p-4 shadow-sm">
+        <section className="rounded-3xl bg-white p-4 shadow-xs">
           <h2 className="mb-3 text-xl font-black">{t('summary.hardest')}</h2>
           {hardest.length === 0 ? (
             <p className="font-bold text-slate-500">{t('summary.noHardest')}</p>
@@ -59,7 +59,7 @@ export function SummaryScreen() {
           )}
         </section>
 
-        <section className="rounded-3xl bg-white p-4 shadow-sm">
+        <section className="rounded-3xl bg-white p-4 shadow-xs">
           <h2 className="mb-3 text-xl font-black">{t('summary.tables')}</h2>
           <div className="flex flex-col gap-2">
             {tables.map((n) => {
@@ -80,7 +80,7 @@ export function SummaryScreen() {
           </div>
         </section>
 
-        <section className="rounded-3xl bg-white p-4 shadow-sm" data-testid="summary-adventure">
+        <section className="rounded-3xl bg-white p-4 shadow-xs" data-testid="summary-adventure">
           <h2 className="mb-3 text-xl font-black">{t('summary.adventure')}</h2>
           <div className="grid grid-cols-2 gap-2">
             <Stat label={t('summary.levelsDone')} value={`${completedCount(save.adventure)} / ${levels.length}`} />

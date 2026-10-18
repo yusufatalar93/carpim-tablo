@@ -159,7 +159,7 @@ function FinalBattle() {
           <div className="absolute inset-x-3 top-2 flex items-center gap-2">
             <span className="text-lg" aria-hidden="true">🧒</span>
             <div className="h-3 flex-1 overflow-hidden rounded-full bg-white/70" role="meter" aria-valuenow={battle.distance} aria-valuemin={0} aria-valuemax={100}>
-              <div className="h-full rounded-full bg-gradient-to-r from-rose-400 via-amber-400 to-emerald-500 transition-all duration-300" style={{ width: `${battle.distance}%` }} />
+              <div className="h-full rounded-full bg-linear-to-r from-rose-400 via-amber-400 to-emerald-500 transition-all duration-300" style={{ width: `${battle.distance}%` }} />
             </div>
             <span className="text-lg" aria-hidden="true">🏫</span>
           </div>

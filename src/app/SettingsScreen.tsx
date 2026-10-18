@@ -30,7 +30,7 @@ export function SettingsScreen() {
             maxLength={24}
             onChange={(e) => setNameLocal(e.target.value)}
             onBlur={() => setName(name)}
-            className="min-h-[56px] rounded-2xl border-4 border-sky-100 bg-white px-4 text-xl font-bold outline-none focus:border-sky-400"
+            className="min-h-[56px] rounded-2xl border-4 border-sky-100 bg-white px-4 text-xl font-bold outline-hidden focus:border-sky-400"
           />
         </label>
         <Toggle label={`🔊 ${t('settings.sound')}`} checked={s.soundOn} onChange={(v) => setSettings({ soundOn: v })} />

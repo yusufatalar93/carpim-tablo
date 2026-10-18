@@ -222,7 +222,7 @@ function PracticeResult({ result, onAgain, onSetup }: { result: RoundResult; onA
           <Stat label={`✅ ${t('practice.correct')}`} value={String(result.correct)} />
           <Stat label={`❌ ${t('practice.wrong')}`} value={String(result.wrong)} />
         </div>
-        <section className="w-full rounded-3xl bg-white p-4 text-center shadow-sm">
+        <section className="w-full rounded-3xl bg-white p-4 text-center shadow-xs">
           <h2 className="mb-2 text-xl font-black">{t('practice.hardest')}</h2>
           {result.hardest.length === 0 ? (
             <p className="font-bold text-emerald-600">🌟 {t('practice.noHard')}</p>

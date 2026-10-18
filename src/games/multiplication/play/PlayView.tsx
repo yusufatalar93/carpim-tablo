@@ -52,7 +52,7 @@ export function PlayView({ loop, config, timeLimitMs, header, scene, onQuit, chi
           type="button"
           onClick={onQuit}
           aria-label={t('common.quit')}
-          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-2xl font-black shadow-sm active:scale-95"
+          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-2xl font-black shadow-xs active:scale-95"
           data-testid="quit"
         >
           ✕

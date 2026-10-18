@@ -33,7 +33,7 @@ export function Heatmap({ facts, config, onSelect }: Props) {
       <div className="mt-3 flex flex-wrap justify-center gap-2 text-sm font-bold">
         {(Object.keys(HEALTH_STYLE) as FactHealth[]).map((h) => (
           <span key={h} className="flex items-center gap-1">
-            <span className={`flex h-5 w-5 items-center justify-center rounded ${HEALTH_STYLE[h].bg} ${HEALTH_STYLE[h].text} text-xs font-black`}>{HEALTH_STYLE[h].icon}</span>
+            <span className={`flex h-5 w-5 items-center justify-center rounded-sm ${HEALTH_STYLE[h].bg} ${HEALTH_STYLE[h].text} text-xs font-black`}>{HEALTH_STYLE[h].icon}</span>
             {t(`summary.legend.${h}`)}
           </span>
         ))}

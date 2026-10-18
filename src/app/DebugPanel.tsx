@@ -15,14 +15,14 @@ export function DebugPanel() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-2 left-2 z-[100] h-10 w-10 rounded-full bg-slate-800/70 text-lg text-white"
+        className="fixed bottom-2 left-2 z-100 h-10 w-10 rounded-full bg-slate-800/70 text-lg text-white"
         aria-label="Debug"
         data-testid="debug-toggle"
       >
         🐞
       </button>
       {open && (
-        <div className="fixed bottom-14 left-2 z-[100] w-72 rounded-2xl bg-slate-900/95 p-3 text-white shadow-2xl">
+        <div className="fixed bottom-14 left-2 z-100 w-72 rounded-2xl bg-slate-900/95 p-3 text-white shadow-2xl">
           <p className="mb-2 text-sm font-black">Debug panel (dev only)</p>
           <div className="mb-2 grid grid-cols-2 gap-1">
             <button className={btn} onClick={debug.unlockAll}>Unlock all</button>
