@@ -6,6 +6,8 @@ import { VitePWA } from 'vite-plugin-pwa';
 import pkg from './package.json';
 
 export default defineConfig({
+  // GitHub Pages serves the app from /<repo>/; the deploy workflow sets BASE_PATH.
+  base: process.env.BASE_PATH ?? '/',
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
   },
