@@ -7,7 +7,7 @@ import type { Rng } from './rng';
 import { effectiveReviewRatio, QuestionScheduler, type ScheduledQuestion } from './scheduler';
 import { computeStars } from './stars';
 import { recordStats } from './stats';
-import type { FactStatsMap } from './types';
+import type { FactStatsMap, Mastery } from './types';
 
 export type SessionMode = 'level' | 'final' | 'practice';
 
@@ -51,6 +51,11 @@ interface SessionSetup {
   reviewRatio: number;
   questionLimit: number | null;
   timeLimitMs: number | null;
+  /**
+   * Replay of a finished level/final: progress is tracked in a session-local mastery map that
+   * starts at 0, while global mastery and statistics are still updated as usual.
+   */
+  trackLocally?: boolean;
 }
 
 /**
@@ -73,6 +78,7 @@ export class GameSession {
   private questionLimit: number | null;
   private _battle: BattleState | null = null;
   private done = false;
+  private local: Record<string, Mastery> | null = null;
 
   constructor(
     setup: SessionSetup,
@@ -86,6 +92,7 @@ export class GameSession {
     this.targetMastery = setup.targetMastery;
     this.questionLimit = setup.questionLimit;
     this._facts = { ...facts };
+    if (setup.trackLocally) this.local = Object.fromEntries(setup.targetFacts.map((id) => [id, 0 as Mastery]));
     this.scheduler = new QuestionScheduler(
       {
         mode: setup.schedulerMode,
@@ -104,6 +111,18 @@ export class GameSession {
     return this._facts;
   }
 
+  /** Mastery view used for scheduling and completion (global, or session-local on replay). */
+  private view(): FactStatsMap {
+    if (!this.local) return this._facts;
+    const v: FactStatsMap = { ...this._facts };
+    for (const [id, m] of Object.entries(this.local)) v[id] = { ...v[id], mastery: m };
+    return v;
+  }
+
+  get isReplay(): boolean {
+    return this.local !== null;
+  }
+
   get battle(): BattleState | null {
     return this._battle;
   }
@@ -119,18 +138,18 @@ export class GameSession {
   /** Progress towards the session goal, e.g. { done: 9, total: 15 }. */
   progress(): { done: number; total: number } {
     if (this.mode === 'practice') return { done: this.answered, total: this.questionLimit ?? 0 };
-    return { done: countReached(this.targetFacts, this._facts, this.targetMastery), total: this.targetFacts.length };
+    return { done: countReached(this.targetFacts, this.view(), this.targetMastery), total: this.targetFacts.length };
   }
 
   /** Fraction (0..1) of the remaining work done; used for the kid's position in the level scene. */
   stepProgress(): number {
     const total = this.targetFacts.length * this.targetMastery;
-    return total === 0 ? 1 : 1 - remainingSteps(this.targetFacts, this._facts, this.targetMastery) / total;
+    return total === 0 ? 1 : 1 - remainingSteps(this.targetFacts, this.view(), this.targetMastery) / total;
   }
 
   nextQuestion(): Question {
     if (this.current) return this.current;
-    const q = this.scheduler.next(this._facts);
+    const q = this.scheduler.next(this.view());
     const parsed = parseFactId(q.factId)!;
     this.current = { ...q, a: parsed.a, b: parsed.b, answer: parsed.a * parsed.b };
     return this.current;
@@ -149,6 +168,9 @@ export class GameSession {
     let after = recordStats(before, correct, responseMs, now);
     if (this.mode !== 'practice') after = { ...after, mastery: nextMastery(before.mastery, correct, this.config) };
     this._facts = { ...this._facts, [question.factId]: after };
+    if (this.local && question.factId in this.local) {
+      this.local[question.factId] = nextMastery(this.local[question.factId], correct, this.config);
+    }
     this.scheduler.record(question, correct);
 
     this.answered++;
@@ -164,9 +186,9 @@ export class GameSession {
     let levelPassed = false;
     let finalComplete = false;
     let roundComplete = false;
-    if (this.mode === 'level') levelPassed = allReached(this.targetFacts, this._facts, this.targetMastery);
+    if (this.mode === 'level') levelPassed = allReached(this.targetFacts, this.view(), this.targetMastery);
     if (this.mode === 'final') {
-      finalComplete = allReached(this.targetFacts, this._facts, this.targetMastery);
+      finalComplete = allReached(this.targetFacts, this.view(), this.targetMastery);
       if (this._battle) this._battle = applyBattleAnswer(this._battle, correct, responseMs, this.timeLimitMs, this.config);
     }
     if (this.mode === 'practice') roundComplete = this.questionLimit !== null && this.answered >= this.questionLimit;
@@ -207,8 +229,13 @@ export class GameSession {
   }
 
   private shouldBeBoss(): boolean {
-    return remainingSteps(this.targetFacts, this._facts, this.targetMastery) <= this.config.battle.bossThreshold;
+    return remainingSteps(this.targetFacts, this.view(), this.targetMastery) <= this.config.battle.bossThreshold;
   }
+}
+
+export interface SessionOptions {
+  /** Replay a completed level/final for more stars (see SessionSetup.trackLocally). */
+  replay?: boolean;
 }
 
 /** Starts (or resumes) a normal adventure level. */
@@ -218,8 +245,11 @@ export function createLevelSession(
   config: GameConfig,
   rng: Rng,
   timeLimitMs: number | null,
+  options: SessionOptions = {},
 ): GameSession {
-  const steps = remainingSteps(levelFacts.newFacts, facts, config.levelPassMastery);
+  const steps = options.replay
+    ? levelFacts.newFacts.length * config.levelPassMastery
+    : remainingSteps(levelFacts.newFacts, facts, config.levelPassMastery);
   return new GameSession(
     {
       mode: 'level',
@@ -230,6 +260,7 @@ export function createLevelSession(
       reviewRatio: effectiveReviewRatio(steps, levelFacts.reviewPool.length, config),
       questionLimit: null,
       timeLimitMs,
+      trackLocally: options.replay,
     },
     facts,
     config,
@@ -237,14 +268,24 @@ export function createLevelSession(
   );
 }
 
-/** Starts (or resumes) the final battle: every fact must reach finalMastery. */
-export function createFinalSession(facts: FactStatsMap, config: GameConfig, rng: Rng, timeLimitMs: number | null): GameSession {
+/**
+ * Starts (or resumes) the final battle: every fact must reach finalMastery.
+ * A replay asks every fact once (session-local), keeping it a reasonable length.
+ */
+export function createFinalSession(
+  facts: FactStatsMap,
+  config: GameConfig,
+  rng: Rng,
+  timeLimitMs: number | null,
+  options: SessionOptions = {},
+): GameSession {
   return new GameSession(
     {
       mode: 'final',
       targetFacts: allFacts(config).map((f) => f.id),
       reviewPool: [],
-      targetMastery: config.finalMastery,
+      targetMastery: options.replay ? 1 : config.finalMastery,
+      trackLocally: options.replay,
       schedulerMode: 'bucket',
       reviewRatio: 0,
       questionLimit: null,

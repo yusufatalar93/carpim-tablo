@@ -243,3 +243,39 @@ describe('practice', () => {
     }
   });
 });
+
+describe('replay', () => {
+  it('replaying a completed level asks its facts again and still passes', () => {
+    const facts = createFactStatsMap(config);
+    for (const id of lf.mill.newFacts) facts[id] = { ...facts[id], mastery: 3 };
+    const s = createLevelSession(lf.mill, facts, config, createRng(1), 5000, { replay: true });
+    expect(s.isReplay).toBe(true);
+    expect(s.progress()).toEqual({ done: 0, total: 15 });
+    let passed = false;
+    let n = 0;
+    while (!passed && n++ < 200) {
+      const q = s.nextQuestion();
+      passed = s.answer(q.answer, 1000, 0).levelPassed;
+    }
+    expect(passed).toBe(true);
+    expect(s.summary().answered).toBeGreaterThanOrEqual(30);
+    expect(lf.mill.newFacts.every((id) => s.facts[id].mastery === 3)).toBe(true);
+  });
+});
+
+describe('minimum level length', () => {
+  it('every normal level lasts at least minQuestionsPerLevel questions on a perfect run', () => {
+    for (const level of levels.filter((l) => !l.isFinal)) {
+      const facts = createFactStatsMap(config);
+      const s = createLevelSession(lf[level.id], facts, config, createRng(3), 5000);
+      let passed = false;
+      let n = 0;
+      while (!passed && n++ < 500) {
+        const q = s.nextQuestion();
+        passed = s.answer(q.answer, 1000, 0).levelPassed;
+      }
+      expect(passed).toBe(true);
+      expect(s.summary().answered, level.id).toBeGreaterThanOrEqual(config.minQuestionsPerLevel);
+    }
+  });
+});

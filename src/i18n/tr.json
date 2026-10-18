@@ -1,0 +1,189 @@
+{
+  "app": {
+    "title": "Math Games",
+    "tagline": "Oynayarak öğren!",
+    "loading": "Yükleniyor…"
+  },
+  "common": {
+    "back": "Geri",
+    "ok": "Tamam",
+    "delete": "Sil",
+    "continue": "Devam",
+    "playAgain": "Tekrar oyna",
+    "backToMap": "Haritaya dön",
+    "menu": "Menü",
+    "close": "Kapat",
+    "quit": "Çık",
+    "on": "Açık",
+    "off": "Kapalı",
+    "seconds": "{n} sn",
+    "percent": "%{n}"
+  },
+  "hub": {
+    "greeting": "Merhaba, {name}!",
+    "greetingAnon": "Merhaba!",
+    "soon": "Yakında",
+    "settings": "Ayarlar",
+    "games": {
+      "multiplication": { "title": "Çarpım Tablosu", "desc": "Matematik Okulu'na yolculuk" },
+      "addition": { "title": "Toplama Yarışı", "desc": "Hızlı toplama" },
+      "clock": { "title": "Saat Avcısı", "desc": "Saati oku" },
+      "fractions": { "title": "Kesir Pastası", "desc": "Kesirleri paylaş" }
+    }
+  },
+  "onboarding": {
+    "title": "Hoş geldin!",
+    "question": "Adın ne?",
+    "placeholder": "Adını yaz",
+    "start": "Başla",
+    "skip": "Atla"
+  },
+  "menu": {
+    "title": "Çarpım Tablosu",
+    "adventure": "Macera",
+    "practice": "Antrenman",
+    "summary": "Özet",
+    "progress": "Bölüm {current} / {total}",
+    "allDone": "Macera tamamlandı!"
+  },
+  "levels": {
+    "home": "Ev Köyü",
+    "mill": "Değirmen Köyü",
+    "bridge": "Köprü Başı",
+    "orchard": "Elma Bahçesi",
+    "forest": "Orman Kenarı",
+    "waterfall": "Şelale Köyü",
+    "pass": "Zorlu Geçit",
+    "final": "Okul Kapısı"
+  },
+  "tables": {
+    "1": "1'ler", "2": "2'ler", "3": "3'ler", "4": "4'ler", "5": "5'ler",
+    "6": "6'lar", "7": "7'ler", "8": "8'ler", "9": "9'lar", "10": "10'lar",
+    "11": "11'ler", "12": "12'ler"
+  },
+  "map": {
+    "title": "Macera Haritası",
+    "school": "Matematik Okulu",
+    "locked": "Kilitli",
+    "play": "Oyna",
+    "replay": "Tekrar oyna",
+    "level": "Bölüm {n}",
+    "newFacts": "{count} yeni çarpım",
+    "allTables": "Bütün tablo",
+    "finalHint": "Kapıdaki canavarı yen, okula gir!",
+    "lockedHint": "Önce önceki bölümü geç.",
+    "stars": "{n} yıldız",
+    "you": "Sen buradasın"
+  },
+  "game": {
+    "go": "Başla!",
+    "combo": "x{n} KOMBO!",
+    "correct": "Doğru!",
+    "wrong": "Hmm, doğrusu:",
+    "timeUp": "Süre bitti!",
+    "answer": "Cevap",
+    "progress": "{done} / {total}",
+    "question": "{a} çarpı {b} kaç?",
+    "keypad": "Rakam tuşları",
+    "submit": "Tamam",
+    "erase": "Sil"
+  },
+  "levelComplete": {
+    "title": "Bölüm geçildi!",
+    "arrived": "Hedefe vardın: {name}!",
+    "accuracy": "Doğruluk",
+    "avgTime": "Ort. süre",
+    "bestCombo": "En iyi kombo",
+    "newBest": "Yeni rekor!"
+  },
+  "final": {
+    "title": "Okul Kapısı",
+    "completed": "Tamamlanan: {done} / {total}",
+    "wave": "Dalga {n}",
+    "boss": "Büyük Canavar geldi!",
+    "intro": "Kapıyı bir canavar tutuyor! Doğru cevaplarla onu geri it.",
+    "waveWon": "Canavar kaçtı!",
+    "nextWave": "Sıradaki dalga",
+    "waveLost": "Az kaldı! Tekrar dene",
+    "retry": "Tekrar dene",
+    "progressKept": "Öğrendiklerin kaybolmadı, kaydedildi.",
+    "victory": "Kapı açıldı!",
+    "enterSchool": "Okula gir"
+  },
+  "school": {
+    "welcome": "Okula hoş geldin!",
+    "friends": "Arkadaşların seni bekliyordu!",
+    "showCertificate": "Sertifikamı göster",
+    "certificateTitle": "Çarpım Tablosu Ustası",
+    "certifies": "çarpım tablosunun tamamını öğrendi!",
+    "defaultName": "Minik Kahraman",
+    "date": "Tarih",
+    "stars": "Toplam yıldız",
+    "school": "Matematik Okulu",
+    "soon": "Yakında: yeni dersler!",
+    "screenshotHint": "Ekran görüntüsü alıp saklayabilirsin."
+  },
+  "practice": {
+    "title": "Antrenman",
+    "modeWeak": "Zorlandıklarım",
+    "modeWeakDesc": "Zorlandığın çarpımlar daha sık gelir.",
+    "modeTables": "Tablo seç",
+    "modeFacts": "Seçilen çarpımlar",
+    "length": "Soru sayısı",
+    "timer": "Süre sınırı",
+    "start": "Başla",
+    "pickTable": "En az bir tablo seç.",
+    "resultTitle": "Antrenman bitti!",
+    "correct": "Doğru",
+    "wrong": "Yanlış",
+    "hardest": "En çok zorlandıkların",
+    "noHard": "Hiç zorlanmadın, harika!",
+    "again": "Tekrar",
+    "noPressure": "Acele yok, düşünerek cevapla."
+  },
+  "summary": {
+    "title": "Özet",
+    "heatmap": "Çarpım haritası",
+    "heatmapHint": "Bir kutuya dokun, ayrıntısını gör.",
+    "legend": {
+      "unseen": "Sorulmadı",
+      "struggling": "Zorlanıyor",
+      "medium": "Orta",
+      "good": "İyi"
+    },
+    "tables": "Tablolar",
+    "hardest": "En zor 5 çarpım",
+    "studyThese": "Bunları çalış",
+    "noHardest": "Henüz zorlandığın çarpım yok.",
+    "adventure": "Macera",
+    "levelsDone": "Geçilen bölüm",
+    "totalStars": "Toplam yıldız",
+    "general": "Genel",
+    "questions": "Toplam soru",
+    "accuracy": "Doğruluk",
+    "avgTime": "Ort. süre",
+    "detail": {
+      "asked": "Soruldu",
+      "correct": "Doğru",
+      "wrong": "Yanlış",
+      "avg": "Ort. süre",
+      "mastery": "Ustalık",
+      "level": "Bölüm",
+      "times": "{n} kez"
+    }
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "name": "Adın",
+    "sound": "Ses",
+    "reduceMotion": "Hareketleri azalt",
+    "difficulty": "Zorluk (süre)",
+    "easy": "Kolay",
+    "normal": "Normal",
+    "hard": "Zor",
+    "reset": "İlerlemeyi sıfırla",
+    "resetHold": "Sıfırlamak için basılı tut",
+    "resetDone": "İlerleme sıfırlandı.",
+    "version": "Sürüm {v}"
+  }
+}

@@ -60,12 +60,6 @@ export interface Settings {
   difficulty: Difficulty;
 }
 
-export interface PlayerProfile {
-  id: string;
-  name?: string;
-  createdAt: number;
-}
-
 export interface MultiplicationSave {
   schemaVersion: 1;
   profileId: string;
